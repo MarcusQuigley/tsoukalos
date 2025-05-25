@@ -2,15 +2,22 @@ package main
 
 import (
 	"log"
-	"log/syslog"
+	//"log/syslog"
+	"os"
 )
 
-func main() {
-	syslog, e := syslog.New(syslog.LOG_SYSLOG, "syslog.go")
-	if e != nil {
-		log.Println(e)
-	} else {
-		log.SetOutput(syslog)
-		log.Print("Everythings fine!")
+func main3() {
+	// syslog, e := syslog.New(syslog.LOG_SYSLOG, "syslog.go")
+	// if e != nil {
+	// 	log.Println(e)
+	// 	return
+	// } else {
+	// 	log.SetOutput(syslog)
+	// 	log.Print("Everythings fine!")
+	// }
+
+	if len(os.Args) != 1 {
+		log.Fatal("Fatal: Hello World!")
 	}
+	log.Panic("Panic: Hello World!")
 }
