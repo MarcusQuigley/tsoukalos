@@ -8,7 +8,7 @@ import (
 	"path"
 )
 
-func main() {
+func main4() {
 	LOGFILE := path.Join(os.TempDir(), "mgo.log")
 	fmt.Println(LOGFILE)
 	f, e := os.OpenFile(LOGFILE, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
