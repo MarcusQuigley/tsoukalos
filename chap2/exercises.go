@@ -1,12 +1,15 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
 )
 
-func main() {
+var ErrDivideByZero = errors.New("divide by zero error")
+
+func main33() {
 
 	// sl := arraysToSlice()
 	// for _, v := range sl {
@@ -24,7 +27,7 @@ func main() {
 		fmt.Printf("error with num args %s. :%v", strNum, e.Error())
 		return
 	}
-	errorIs(num)
+	checkerrorIs(num)
 }
 
 func arraysToSlice() []int {
@@ -52,9 +55,25 @@ func arraysToArray() {
 
 }
 
-func errorIs(y int) {
+func divide(x, y int) (int, error) {
+	if x == 0 || y == 0 {
+		return 0, ErrDivideByZero
+	}
+	return (x / y), nil
+}
+
+func checkerrorIs(y int) {
 	x := 4
-	result := x / y
+	result, e := divide(x, y)
+	if e != nil {
+		if errors.Is(e, ErrDivideByZero) {
+			fmt.Println("dont use zero u twat")
+		} else {
+			fmt.Println("error: ", e.Error())
+		}
+
+		return
+	}
 	fmt.Println("result: ", result)
 
 }

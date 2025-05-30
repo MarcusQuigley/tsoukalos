@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"strconv"
 )
@@ -59,4 +60,20 @@ func main() {
 	}
 	sd := math.Sqrt(squared / float64(nValues))
 	fmt.Printf("standard deviation %.5f\n", sd)
+
+}
+
+func normalize(data []float64, mean float64, stdDev float64) []float64 {
+	if stdDev == 0 {
+		return data
+	}
+	normalized := make([]float64, len(data))
+	for i, val := range data {
+		normalized[i] = math.Floor((val-mean)/stdDev*10000) / 10000 //trick to get 4 (0000) digits of accuracy
+	}
+	return normalized
+}
+
+func randomFloat(min, max float64) float64 {
+	return min + rand.Float64()*(max-min)
 }
