@@ -61,7 +61,7 @@ func saveCSVFile(filepath string) error {
 	return nil
 }
 
-func main() {
+func main35() {
 	if len(os.Args) != 3 {
 		log.Println("csvData input output")
 		os.Exit(1)
